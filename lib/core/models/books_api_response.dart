@@ -1,45 +1,57 @@
-class BooksApiResponse {
+import 'package:hive/hive.dart';
+
+@HiveType(typeId: 1)
+class BooksApiResponse extends HiveObject {
+  @HiveField(0)
   List<Books>? books;
 
-  BooksApiResponse({this.books});
+  BooksApiResponse({books});
 
   BooksApiResponse.fromJson(Map<String, dynamic> json) {
     if (json['Books'] != null) {
       books = <Books>[];
       json['Books'].forEach((v) {
-        books!.add(new Books.fromJson(v));
+        books!.add(Books.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.books != null) {
-      data['Books'] = this.books!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (books != null) {
+      data['Books'] = books!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class Books {
+@HiveType(typeId: 2)
+class Books extends HiveObject {
+  @HiveField(0)
   int? id;
+
+  @HiveField(1)
   String? title;
+
+  @HiveField(2)
   String? author;
+
+  @HiveField(3)
   String? imgUrl;
+
+  @HiveField(4)
   String? price;
+
+  @HiveField(5)
   String? review;
+
+  @HiveField(6)
   String? description;
+
+  @HiveField(7)
   String? source;
 
-  Books(
-      {this.id,
-      this.title,
-      this.author,
-      this.imgUrl,
-      this.price,
-      this.review,
-      this.description,
-      this.source});
+  Books(id, title, author, imgUrl, price, review, description, source);
 
   Books.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -53,15 +65,15 @@ class Books {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['author'] = this.author;
-    data['imgUrl'] = this.imgUrl;
-    data['price'] = this.price;
-    data['review'] = this.review;
-    data['description'] = this.description;
-    data['source'] = this.source;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['author'] = author;
+    data['imgUrl'] = imgUrl;
+    data['price'] = price;
+    data['review'] = review;
+    data['description'] = description;
+    data['source'] = source;
     return data;
   }
 }

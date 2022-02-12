@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nytbooks/ui/home/widgets/search_delegare.dart';
 
 import '../../core/enums/view_states.dart';
 import '../../core/models/books_api_response.dart';
@@ -11,33 +12,36 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bookshelf'),
-      ),
-      body: SafeArea(
-        child: BaseView<HomeViewModel>(
-            onModelReady: (HomeViewModel homeViewModel) {
-          homeViewModel.fetchBestSellingBooks();
-        }, builder: (context, homeViewModel, _) {
-          switch (homeViewModel.viewState) {
-            case ViewState.busy:
-              return buildLoadingIndicator();
-            case ViewState.idle:
-              return buildIdleState(homeViewModel);
-            case ViewState.error:
-              return buildErrorState();
-          }
-        }),
-      ),
-    );
+    return BaseView<HomeViewModel>(onModelReady: (HomeViewModel homeViewModel) {
+      homeViewModel.fetchBestSellingBooks();
+    }, builder: (context, homeViewModel, _) {
+      return Scaffold(
+        appBar: AppBar(
+            title: const Text('Bookshelf'),
+            actions: _getAppBarActions(context, homeViewModel)),
+        body: SafeArea(
+          child: _buildHomeBody(homeViewModel),
+        ),
+      );
+    });
+  }
+
+  Widget _buildHomeBody(HomeViewModel homeViewModel) {
+    switch (homeViewModel.viewState) {
+      case ViewState.busy:
+        return buildLoadingIndicator();
+      case ViewState.idle:
+        return buildIdleState(homeViewModel);
+      case ViewState.error:
+        return buildErrorState();
+    }
   }
 
   Widget buildIdleState(HomeViewModel homeViewModel) {
     return ListView.builder(
-        itemCount: homeViewModel.bestSellingBooks.length,
+        itemCount: homeViewModel.books.length,
         itemBuilder: (context, position) {
-          Books book = homeViewModel.bestSellingBooks[position];
+          Books book = homeViewModel.books[position];
           return BookListTile(book);
         });
   }
@@ -51,4 +55,18 @@ class HomeScreen extends StatelessWidget {
   Widget buildErrorState() {
     return const Center(child: Text('Something went wrong. Please try again.'));
   }
+}
+
+_getAppBarActions(BuildContext context, HomeViewModel homeViewModel) {
+  return [
+    homeViewModel.books.isNotEmpty
+        ? IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              showSearch(
+                  context: context,
+                  delegate: BookSearchDelegate(homeViewModel.books));
+            })
+        : Container()
+  ];
 }
