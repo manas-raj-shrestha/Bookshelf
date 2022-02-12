@@ -4,12 +4,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:nytbooks/core/constants/screen_titles.dart';
 import 'package:nytbooks/core/models/books_api_response.dart';
-import 'package:nytbooks/ui/home/home_screen.dart';
+import 'package:nytbooks/core/services/firebase_service.dart';
+
+import 'package:nytbooks/ui/index_page.dart';
 
 import 'core/helper/dependency_injection.dart';
 import 'core/models/book.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await FirebaseService.shared.initialise();
+  FirebaseService.shared.tasks;
+
+  Function? originalOnError = FlutterError.onError;
+  FlutterError.onError = (FlutterErrorDetails errorDetails) async {
+    if (originalOnError != null) originalOnError(errorDetails);
+  };
+
   await dotenv.load(fileName: ".env");
 
   setupInjections();
@@ -39,7 +51,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blueGrey,
         ),
-        home: const HomeScreen(),
+        home: IndexPage(),
       ),
     );
   }

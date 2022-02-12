@@ -4,7 +4,7 @@ import 'package:nytbooks/core/models/book.dart';
 import 'package:nytbooks/ui/home/widgets/book_search_delegare.dart';
 
 import '../../core/enums/view_states.dart';
-import '../../core/models/books_api_response.dart';
+
 import '../../view_models/home_view_model.dart';
 import '../base_view.dart';
 import 'widgets/book_list_tile.dart';
@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView<HomeViewModel>(onModelReady: (HomeViewModel homeViewModel) {
-      homeViewModel.fetchBestSellingBooks();
+      homeViewModel.fetchBooks();
     }, builder: (context, homeViewModel, _) {
       return Scaffold(
         appBar: AppBar(
