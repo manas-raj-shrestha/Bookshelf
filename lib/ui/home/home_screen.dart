@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nytbooks/ui/home/widgets/search_delegare.dart';
+import 'package:nytbooks/core/models/book.dart';
+import 'package:nytbooks/ui/home/widgets/book_search_delegare.dart';
 
 import '../../core/enums/view_states.dart';
 import '../../core/models/books_api_response.dart';
@@ -63,9 +64,7 @@ _getAppBarActions(BuildContext context, HomeViewModel homeViewModel) {
         ? IconButton(
             icon: const Icon(Icons.search),
             onPressed: () {
-              showSearch(
-                  context: context,
-                  delegate: BookSearchDelegate(homeViewModel.books));
+              showSearch(context: context, delegate: BookSearchDelegate());
             })
         : Container()
   ];
