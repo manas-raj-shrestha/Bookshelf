@@ -71,9 +71,8 @@ class TasksPage extends StatelessWidget {
 }
 
 class _Task extends StatelessWidget {
-  const _Task(this.task);
-
   final Task task;
+  const _Task(this.task);
 
   void _delete() {
     //TODO implement delete to firestore
@@ -84,6 +83,7 @@ class _Task extends StatelessWidget {
   }
 
   void _view(BuildContext context) {
+    print('Task ${task.title}');
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => TaskPage(task: task)),

@@ -13,7 +13,6 @@ class Task {
   }
 
   bool get isCompleted {
-    print('checking ${completedAt != null}');
     return completedAt != null;
   }
 
@@ -26,6 +25,7 @@ class Task {
   }
 
   Task.fromJson(String docId, Map<String, dynamic> json) {
+    print(docId);
     id = docId;
     title = json['title'];
     description = json['description'];
@@ -36,7 +36,6 @@ class Task {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
     data['title'] = this.title;
     data['description'] = this.description;
     data['completed_at'] = this.completedAt;

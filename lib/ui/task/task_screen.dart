@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nytbooks/core/helper/dependency_injection.dart';
 import 'package:nytbooks/core/models/task.dart';
+import 'package:nytbooks/view_models/task_view_model.dart';
 
 class TaskPage extends StatelessWidget {
   const TaskPage({Key? key, this.task}) : super(key: key);
@@ -24,7 +26,7 @@ class _TaskForm extends StatefulWidget {
   _TaskForm({this.task});
 
   @override
-  __TaskFormState createState() => __TaskFormState();
+  __TaskFormState createState() => __TaskFormState(task);
 }
 
 class __TaskFormState extends State<_TaskForm> {
@@ -33,6 +35,8 @@ class __TaskFormState extends State<_TaskForm> {
   Task? task;
   TextEditingController? _titleController;
   TextEditingController? _descriptionController;
+
+  __TaskFormState(this.task);
 
   void init() {
     if (task == null) {
@@ -53,9 +57,11 @@ class __TaskFormState extends State<_TaskForm> {
   }
 
   void _save(BuildContext context) {
-    //TODO implement save to firestore
+    task!.title = _titleController!.text;
+    task!.description = _descriptionController!.text;
 
-    // FirebaseManager.shared.addTask(task);
+    serviceLocator<TaskViewModel>().addTask(task!);
+
     Navigator.of(context).pop();
   }
 
@@ -103,8 +109,7 @@ class __TaskFormState extends State<_TaskForm> {
               onPressed: () => _save(context),
               child: Container(
                 width: double.infinity,
-                child: Center(
-                    child: Text((task?.isNew ?? false) ? 'Create' : 'Update')),
+                child: Center(child: Text((task!.isNew) ? 'Create' : 'Update')),
               ),
             )
           ],

@@ -23,12 +23,6 @@ class FirebaseService {
   Future<List<Task>> get tasks async {
     QuerySnapshot snapshot = await tasksRef.get();
 
-    // print(snapshot.docs);
-
-    // snapshot.docs.forEach((element) {
-    //   print(element.data() as Map<String, dynamic>);
-    // });
-
     List<Task> transformedTasks = snapshot.docs
         .map((doc) => Task.fromJson(doc.id, doc.data() as Map<String, dynamic>))
         .toList();
@@ -36,8 +30,8 @@ class FirebaseService {
     return transformedTasks;
   }
 
-  //TODO: implement firestore CRUD functions here
-  void addTask(Task task) {
-    tasksRef.add(task.toJson());
+  Future<String> addTask(Task task) async {
+    DocumentReference documentReference = await tasksRef.add(task.toJson());
+    return documentReference.id;
   }
 }

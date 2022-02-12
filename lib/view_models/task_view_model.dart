@@ -24,4 +24,16 @@ class TaskViewModel extends BaseModel {
       notifyListeners();
     }
   }
+
+  Future addTask(Task task) async {
+    FirebaseService.shared.addTask(task).then((value) {
+      task.id = value;
+
+      print(task.id);
+
+      tasks.add(task);
+
+      notifyListeners();
+    });
+  }
 }
