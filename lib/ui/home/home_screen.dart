@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nytbooks/core/constants/screen_titles.dart';
 import 'package:nytbooks/core/models/book.dart';
 import 'package:nytbooks/ui/home/widgets/book_search_delegare.dart';
 
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
     }, builder: (context, homeViewModel, _) {
       return Scaffold(
         appBar: AppBar(
-            title: const Text('Bookshelf'),
+            title: const Text(appTitle),
             actions: _getAppBarActions(context, homeViewModel)),
         body: SafeArea(
           child: _buildHomeBody(homeViewModel),

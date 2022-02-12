@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:nytbooks/core/environment.dart';
 import 'package:nytbooks/core/network/interceptors/dio_auth_interceptor.dart';
-import 'package:nytbooks/core/network/interceptors/dio_logging_interceptor.dart';
 
 class ApiManager {
   final _connectTimeout = 4000;
@@ -10,7 +10,7 @@ class ApiManager {
 
   ApiManager() {
     BaseOptions options = BaseOptions(
-        baseUrl: 'https://bookshelves.p.rapidapi.com',
+        baseUrl: Environment.baseUrl,
         connectTimeout: _connectTimeout,
         receiveTimeout: _receiveTimeout,
         contentType: Headers.jsonContentType,

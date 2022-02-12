@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nytbooks/core/constants/screen_titles.dart';
 import 'package:nytbooks/core/models/book.dart';
 
 class BookDetail extends StatelessWidget {
@@ -11,7 +12,7 @@ class BookDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Bookshelf'),
+        title: const Text(appTitle),
       ),
       body: SafeArea(
           child: Padding(
