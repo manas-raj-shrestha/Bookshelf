@@ -23,9 +23,10 @@ class TaskPage extends StatelessWidget {
 class _TaskForm extends StatefulWidget {
   final Task? task;
 
-  _TaskForm({this.task});
+  const _TaskForm({this.task});
 
   @override
+  // ignore: no_logic_in_create_state
   __TaskFormState createState() => __TaskFormState(task);
 }
 
@@ -57,10 +58,17 @@ class __TaskFormState extends State<_TaskForm> {
   }
 
   void _save(BuildContext context) {
-    task!.title = _titleController!.text;
-    task!.description = _descriptionController!.text;
+    if (task!.isNew) {
+      task!.title = _titleController!.text;
+      task!.description = _descriptionController!.text;
 
-    serviceLocator<TaskViewModel>().addTask(task!);
+      serviceLocator<TaskViewModel>().addTask(task!);
+    } else {
+      task!.title = _titleController!.text;
+      task!.description = _descriptionController!.text;
+
+      serviceLocator<TaskViewModel>().updateTask(task!);
+    }
 
     Navigator.of(context).pop();
   }
@@ -74,26 +82,26 @@ class __TaskFormState extends State<_TaskForm> {
           children: [
             TextField(
               controller: _titleController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Title',
               ),
             ),
-            SizedBox(height: _padding),
+            const SizedBox(height: _padding),
             TextField(
               controller: _descriptionController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Description',
               ),
               minLines: 5,
               maxLines: 10,
             ),
-            SizedBox(height: _padding),
+            const SizedBox(height: _padding),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Completed ?'),
+                const Text('Completed ?'),
                 CupertinoSwitch(
                   value: task?.isCompleted ?? false,
                   onChanged: (_) {
@@ -107,7 +115,7 @@ class __TaskFormState extends State<_TaskForm> {
             const Spacer(),
             ElevatedButton(
               onPressed: () => _save(context),
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 child: Center(child: Text((task!.isNew) ? 'Create' : 'Update')),
               ),

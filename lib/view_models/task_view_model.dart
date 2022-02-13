@@ -26,14 +26,25 @@ class TaskViewModel extends BaseModel {
   }
 
   Future addTask(Task task) async {
-    FirebaseService.shared.addTask(task).then((value) {
-      task.id = value;
+    String docId = await FirebaseService.shared.addTask(task);
+    task.id = docId;
 
-      print(task.id);
+    tasks.add(task);
+    notifyListeners();
+  }
 
-      tasks.add(task);
-
+  Future<void> deleteTask(Task task) async {
+    if (task.id != null) {
+      await FirebaseService.shared.deleteTask(task.id!);
+      tasks.removeWhere((element) => element.id == task.id);
       notifyListeners();
-    });
+    }
+  }
+
+  Future updateTask(Task updatedTask) async {
+    await FirebaseService.shared.editTask(updatedTask);
+    tasks[tasks.indexWhere((element) => element.id == updatedTask.id)] =
+        updatedTask;
+    notifyListeners();
   }
 }

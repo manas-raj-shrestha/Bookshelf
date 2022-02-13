@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Task {
   String? id;
   String? title;
@@ -25,20 +23,17 @@ class Task {
   }
 
   Task.fromJson(String docId, Map<String, dynamic> json) {
-    print(docId);
     id = docId;
     title = json['title'];
     description = json['description'];
-    completedAt = (json['completed_at'] != null)
-        ? (json['completed_at'] as Timestamp).toDate().toIso8601String()
-        : json['completed_at'];
+    completedAt = json['completed_at'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['description'] = this.description;
-    data['completed_at'] = this.completedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['description'] = description;
+    data['completed_at'] = completedAt;
     return data;
   }
 }

@@ -34,4 +34,12 @@ class FirebaseService {
     DocumentReference documentReference = await tasksRef.add(task.toJson());
     return documentReference.id;
   }
+
+  Future<void> deleteTask(String taskId) async {
+    await tasksRef.doc(taskId).delete();
+  }
+
+  Future<void> editTask(Task task) async {
+    await tasksRef.doc(task.id).update(task.toJson());
+  }
 }

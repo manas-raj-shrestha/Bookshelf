@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nytbooks/core/enums/view_states.dart';
+import 'package:nytbooks/core/helper/dependency_injection.dart';
 
 import 'package:nytbooks/core/models/task.dart';
 import 'package:nytbooks/ui/base_view.dart';
@@ -75,15 +76,15 @@ class _Task extends StatelessWidget {
   const _Task(this.task);
 
   void _delete() {
-    //TODO implement delete to firestore
+    serviceLocator<TaskViewModel>().deleteTask(task);
   }
 
   void _toggleComplete() {
-    //TODO implement toggle complete to firestore
+    task.toggleComplete();
+    serviceLocator<TaskViewModel>().updateTask(task);
   }
 
   void _view(BuildContext context) {
-    print('Task ${task.title}');
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => TaskPage(task: task)),
