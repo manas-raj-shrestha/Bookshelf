@@ -13,7 +13,6 @@ import 'core/models/book.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await FirebaseService.shared.initialise();
   FirebaseService.shared.tasks;
 
@@ -51,7 +50,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blueGrey,
         ),
-        home: IndexPage(),
+        home: const IndexPage(),
       ),
     );
   }

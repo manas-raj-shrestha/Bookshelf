@@ -40,6 +40,8 @@ class TasksPage extends StatelessWidget {
             model.fetchTasks();
           },
           builder: (context, model, child) {
+            _showSnacks(model, context);
+
             switch (model.viewState) {
               case ViewState.busy:
                 return const Center(
@@ -58,6 +60,20 @@ class TasksPage extends StatelessWidget {
             }
           },
         ));
+  }
+
+  void _showSnacks(TaskViewModel model, BuildContext context) {
+    if (model.resultHolder != null) {
+      WidgetsBinding.instance!.addPostFrameCallback((_) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          duration: const Duration(seconds: 1),
+          content: Text(model.resultHolder!.message),
+          backgroundColor:
+              model.resultHolder!.hasError ? Colors.red : Colors.green,
+        ));
+        model.clearResultHolder();
+      });
+    }
   }
 
   Widget _buildIdleState(TaskViewModel model) {

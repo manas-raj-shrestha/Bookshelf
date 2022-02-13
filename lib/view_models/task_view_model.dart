@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:nytbooks/core/enums/view_states.dart';
 import 'package:nytbooks/core/models/task.dart';
 import 'package:nytbooks/core/services/firebase_service.dart';
@@ -9,8 +10,9 @@ class TaskViewModel extends BaseModel {
   List<Task> get completedTasks =>
       tasks.where((task) => task.isCompleted).toList();
 
-  bool containsFirebaseCallErrors = false;
-  String? errorMessage;
+  _ResultHolder? _resultHolder;
+
+  _ResultHolder? get resultHolder => _resultHolder;
 
   Future fetchTasks() async {
     try {
@@ -28,12 +30,20 @@ class TaskViewModel extends BaseModel {
     }
   }
 
-  Future addTask(Task task) async {
-    String docId = await FirebaseService.shared.addTask(task);
-    task.id = docId;
+  void clearResultHolder() => _resultHolder = null;
 
-    tasks.add(task);
-    notifyListeners();
+  Future addTask(Task task) async {
+    try {
+      String docId = await FirebaseService.shared.addTask(task);
+      task.id = docId;
+
+      tasks.add(task);
+      _resultHolder = _ResultHolder(false, 'Task added successfully');
+    } catch (e) {
+      _resultHolder = _ResultHolder(false, 'Failed to add task!');
+    } finally {
+      notifyListeners();
+    }
   }
 
   Future<void> deleteTask(Task task) async {
@@ -41,19 +51,33 @@ class TaskViewModel extends BaseModel {
       if (task.id != null) {
         await FirebaseService.shared.deleteTask(task.id!);
         tasks.removeWhere((element) => element.id == task.id);
+        _resultHolder = _ResultHolder(false, 'Task deleted successfully');
       }
     } catch (error) {
-      containsFirebaseCallErrors = true;
-      errorMessage = 'Failed to delete task!';
+      _resultHolder = _ResultHolder(true, 'Failed to delete task!');
     } finally {
       notifyListeners();
     }
   }
 
   Future updateTask(Task updatedTask) async {
-    await FirebaseService.shared.editTask(updatedTask);
-    tasks[tasks.indexWhere((element) => element.id == updatedTask.id)] =
-        updatedTask;
-    notifyListeners();
+    try {
+      await FirebaseService.shared.editTask(updatedTask);
+      tasks[tasks.indexWhere((element) => element.id == updatedTask.id)] =
+          updatedTask;
+
+      _resultHolder = _ResultHolder(false, 'Task updated successfully');
+    } catch (e) {
+      _resultHolder = _ResultHolder(true, 'Failed to update task!');
+    } finally {
+      notifyListeners();
+    }
   }
+}
+
+class _ResultHolder {
+  bool hasError;
+  String message;
+
+  _ResultHolder(this.hasError, this.message);
 }
