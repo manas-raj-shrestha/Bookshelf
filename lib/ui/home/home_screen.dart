@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nytbooks/core/constants/screen_titles.dart';
 import 'package:nytbooks/core/models/book.dart';
+import 'package:nytbooks/ui/comons/error_widget.dart';
 import 'package:nytbooks/ui/home/widgets/book_search_delegare.dart';
 
 import '../../core/enums/view_states.dart';
@@ -35,7 +36,7 @@ class HomeScreen extends StatelessWidget {
       case ViewState.idle:
         return buildIdleState(homeViewModel);
       case ViewState.error:
-        return buildErrorState();
+        return buildErrorState(homeViewModel);
     }
   }
 
@@ -54,8 +55,13 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget buildErrorState() {
-    return const Center(child: Text('Something went wrong. Please try again.'));
+  Widget buildErrorState(HomeViewModel homeViewModel) {
+    return ErrorMessage(
+        message: 'There was some problem while loading books.',
+        buttonTitle: 'Retry',
+        onTap: () {
+          homeViewModel.fetchBooks();
+        });
   }
 }
 

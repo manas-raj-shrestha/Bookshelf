@@ -9,6 +9,9 @@ class TaskViewModel extends BaseModel {
   List<Task> get completedTasks =>
       tasks.where((task) => task.isCompleted).toList();
 
+  bool containsFirebaseCallErrors = false;
+  String? errorMessage;
+
   Future fetchTasks() async {
     try {
       if (tasks.isEmpty) {
@@ -34,9 +37,15 @@ class TaskViewModel extends BaseModel {
   }
 
   Future<void> deleteTask(Task task) async {
-    if (task.id != null) {
-      await FirebaseService.shared.deleteTask(task.id!);
-      tasks.removeWhere((element) => element.id == task.id);
+    try {
+      if (task.id != null) {
+        await FirebaseService.shared.deleteTask(task.id!);
+        tasks.removeWhere((element) => element.id == task.id);
+      }
+    } catch (error) {
+      containsFirebaseCallErrors = true;
+      errorMessage = 'Failed to delete task!';
+    } finally {
       notifyListeners();
     }
   }

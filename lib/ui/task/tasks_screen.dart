@@ -4,6 +4,7 @@ import 'package:nytbooks/core/helper/dependency_injection.dart';
 
 import 'package:nytbooks/core/models/task.dart';
 import 'package:nytbooks/ui/base_view.dart';
+import 'package:nytbooks/ui/comons/error_widget.dart';
 import 'package:nytbooks/ui/task/task_screen.dart';
 import 'package:nytbooks/view_models/task_view_model.dart';
 
@@ -45,7 +46,12 @@ class TasksPage extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               case ViewState.error:
-                return const Center(child: Text('Something went wrong'));
+                return ErrorMessage(
+                    message: 'Something went wrong while fetching your tasks.',
+                    buttonTitle: 'Retry',
+                    onTap: () {
+                      model.fetchTasks();
+                    });
 
               case ViewState.idle:
                 return _buildIdleState(model);

@@ -21,13 +21,6 @@ class HomeViewModel extends BaseModel {
   Future fetchBooks() async {
     changeState(ViewState.busy);
     try {
-      var localData = retriveBooksFromStorage();
-
-      if (localData.isNotEmpty) {
-        _books.addAll(localData);
-        changeState(ViewState.idle);
-      }
-
       var booksApiResponse = await _bookApiService.fetchBestSellingBooks();
 
       _books.addAll(booksApiResponse.books ?? []);

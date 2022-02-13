@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:nytbooks/core/helper/dependency_injection.dart';
-import 'package:nytbooks/core/models/book.dart';
+
 import 'package:nytbooks/core/models/books_api_response.dart';
 import 'package:nytbooks/core/network/dio_manager.dart';
 

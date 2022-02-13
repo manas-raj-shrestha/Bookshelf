@@ -58,15 +58,12 @@ class __TaskFormState extends State<_TaskForm> {
   }
 
   void _save(BuildContext context) {
-    if (task!.isNew) {
-      task!.title = _titleController!.text;
-      task!.description = _descriptionController!.text;
+    task!.title = _titleController!.text;
+    task!.description = _descriptionController!.text;
 
+    if (task!.isNew) {
       serviceLocator<TaskViewModel>().addTask(task!);
     } else {
-      task!.title = _titleController!.text;
-      task!.description = _descriptionController!.text;
-
       serviceLocator<TaskViewModel>().updateTask(task!);
     }
 
