@@ -4,6 +4,8 @@ Assignment for Morphosis Apps.
 
 <a href="url"><img src="https://raw.githubusercontent.com/manas-raj-shrestha/WonderBooks/NYT-2/screen_shot.png" align="left" height="400" width="200" ></a>
 
+<a href="url"><img src="https://raw.githubusercontent.com/manas-raj-shrestha/WonderBooks/NYT-2/screen_shot_2.png" align="left" height="400" width="200" ></a>
+
 ## Getting Started
 
 Setting up environment files:
