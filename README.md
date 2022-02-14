@@ -1,10 +1,13 @@
-# nytbooks
+# WonderBooks
 
-A new Flutter project.
+Assignment for Morphosis Apps.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Setting up environment files:
+[IMPORTANT] You will need to download and add confirg files from [this](https://drive.google.com/drive/folders/1Bb2V0KdwDH2J_gV3OZ8PHq_yHSajUODI?usp=sharing) before running the application.
+
+.env file goes in your root folder.
 
 A few resources to get you started if this is your first Flutter project:
 

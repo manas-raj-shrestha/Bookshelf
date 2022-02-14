@@ -78,6 +78,7 @@ class __TaskFormState extends State<_TaskForm> {
         child: Column(
           children: [
             TextField(
+              key: const Key('title_text_field'),
               controller: _titleController,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -86,6 +87,7 @@ class __TaskFormState extends State<_TaskForm> {
             ),
             const SizedBox(height: _padding),
             TextField(
+              key: const Key('description_text_field'),
               controller: _descriptionController,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -100,6 +102,7 @@ class __TaskFormState extends State<_TaskForm> {
               children: [
                 const Text('Completed ?'),
                 CupertinoSwitch(
+                  key: const Key('completion_switch'),
                   value: task?.isCompleted ?? false,
                   onChanged: (_) {
                     setState(() {
@@ -111,6 +114,7 @@ class __TaskFormState extends State<_TaskForm> {
             ),
             const Spacer(),
             ElevatedButton(
+              key: const Key('action_button'),
               onPressed: () => _save(context),
               child: SizedBox(
                 width: double.infinity,
