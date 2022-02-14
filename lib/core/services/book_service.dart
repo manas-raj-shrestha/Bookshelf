@@ -5,10 +5,8 @@ import 'package:nytbooks/core/models/books_api_response.dart';
 import 'package:nytbooks/core/network/dio_manager.dart';
 
 class BookService {
-  Dio dioInstance = serviceLocator<ApiManager>().dio;
-
   Future<BooksApiResponse> fetchBestSellingBooks() async {
-    var response = await dioInstance.get('/books');
+    var response = await serviceLocator<ApiManager>().dio.get('/books');
 
     BooksApiResponse booksApiResponse =
         BooksApiResponse.fromJson(response.data);

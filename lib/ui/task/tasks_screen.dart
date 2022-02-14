@@ -4,7 +4,7 @@ import 'package:nytbooks/core/helper/dependency_injection.dart';
 
 import 'package:nytbooks/core/models/task.dart';
 import 'package:nytbooks/ui/base_view.dart';
-import 'package:nytbooks/ui/comons/error_widget.dart';
+import 'package:nytbooks/ui/commons/error_widget.dart';
 import 'package:nytbooks/ui/task/task_screen.dart';
 import 'package:nytbooks/view_models/task_view_model.dart';
 

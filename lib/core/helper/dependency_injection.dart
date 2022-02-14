@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:nytbooks/core/network/dio_manager.dart';
+import 'package:nytbooks/core/services/book_service.dart';
+import 'package:nytbooks/core/services/firebase_service.dart';
 import 'package:nytbooks/core/services/local_storage_service.dart';
 import 'package:nytbooks/view_models/home_view_model.dart';
 import 'package:nytbooks/view_models/task_view_model.dart';
@@ -13,6 +15,12 @@ void setupInjections() {
   serviceLocator
       .registerLazySingleton<LocalStorageService>(() => LocalStorageService());
 
-  serviceLocator.registerLazySingleton<HomeViewModel>(() => HomeViewModel());
-  serviceLocator.registerLazySingleton<TaskViewModel>(() => TaskViewModel());
+  serviceLocator.registerLazySingleton<HomeViewModel>(() =>
+      HomeViewModel(serviceLocator<LocalStorageService>(), BookService()));
+
+  serviceLocator
+      .registerLazySingleton<FirebaseService>(() => FirebaseService());
+
+  serviceLocator.registerLazySingleton<TaskViewModel>(
+      () => TaskViewModel(serviceLocator<FirebaseService>()));
 }

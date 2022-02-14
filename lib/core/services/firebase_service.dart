@@ -3,13 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:nytbooks/core/models/task.dart';
 
 class FirebaseService {
-  static FirebaseService? _one;
-
-  static FirebaseService get shared {
-    return (_one == null ? (_one = FirebaseService._()) : _one!);
-  }
-
-  FirebaseService._();
+  FirebaseService();
 
   Future<void> initialise() => Firebase.initializeApp();
 

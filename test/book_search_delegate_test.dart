@@ -1,21 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nytbooks/core/helper/dependency_injection.dart';
-import 'package:nytbooks/core/models/book.dart';
+import 'package:nytbooks/ui/home/widgets/book_search_delegate.dart';
 
-import 'package:nytbooks/core/services/local_storage_service.dart';
-import 'package:nytbooks/ui/home/widgets/book_search_delegare.dart';
-
-class MockLocalStorage extends LocalStorageService {
-  @override
-  List<Books> getBooksResponse() {
-    return [
-      Books(1, 'The Year of the Locust: Terry Hayes', 'Terry Hayes', 'NA',
-          '£16.00', '3.2 out of 5 stars', '', ''),
-      Books(2, 'Billy Summers: The No. 1 Bestseller', 'Stephen King', 'NA',
-          '£20.00', '4 out of 5 stars', '', '')
-    ];
-  }
-}
+import 'mocks/mock_local_storage.dart';
 
 void main() {
   group('Search Deletegate Logic Test', () {

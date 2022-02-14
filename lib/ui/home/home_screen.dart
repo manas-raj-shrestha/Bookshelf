@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nytbooks/core/constants/screen_titles.dart';
 import 'package:nytbooks/core/models/book.dart';
-import 'package:nytbooks/ui/comons/error_widget.dart';
-import 'package:nytbooks/ui/home/widgets/book_search_delegare.dart';
+import 'package:nytbooks/ui/commons/error_widget.dart';
+import 'package:nytbooks/ui/home/widgets/book_search_delegate.dart';
 
 import '../../core/enums/view_states.dart';
 

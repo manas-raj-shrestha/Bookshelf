@@ -4,6 +4,7 @@ import 'package:nytbooks/core/services/firebase_service.dart';
 import 'package:nytbooks/view_models/base_model.dart';
 
 class TaskViewModel extends BaseModel {
+  FirebaseService _firebaseService;
   List<Task> tasks = [];
 
   List<Task> get completedTasks =>
@@ -13,12 +14,14 @@ class TaskViewModel extends BaseModel {
 
   _ResultHolder? get resultHolder => _resultHolder;
 
+  TaskViewModel(this._firebaseService);
+
   Future fetchTasks() async {
     try {
       if (tasks.isEmpty) {
         changeState(ViewState.busy);
         notifyListeners();
-        List<Task> tasksResponse = await FirebaseService.shared.tasks;
+        List<Task> tasksResponse = await _firebaseService.tasks;
         tasks.addAll(tasksResponse);
         changeState(ViewState.idle);
       }
@@ -33,7 +36,7 @@ class TaskViewModel extends BaseModel {
 
   Future addTask(Task task) async {
     try {
-      String docId = await FirebaseService.shared.addTask(task);
+      String docId = await _firebaseService.addTask(task);
       task.id = docId;
 
       tasks.add(task);
@@ -48,7 +51,7 @@ class TaskViewModel extends BaseModel {
   Future<void> deleteTask(Task task) async {
     try {
       if (task.id != null) {
-        await FirebaseService.shared.deleteTask(task.id!);
+        await _firebaseService.deleteTask(task.id!);
         tasks.removeWhere((element) => element.id == task.id);
         _resultHolder = _ResultHolder(false, 'Task deleted successfully');
       }
@@ -61,7 +64,7 @@ class TaskViewModel extends BaseModel {
 
   Future updateTask(Task updatedTask) async {
     try {
-      await FirebaseService.shared.editTask(updatedTask);
+      await _firebaseService.editTask(updatedTask);
       tasks[tasks.indexWhere((element) => element.id == updatedTask.id)] =
           updatedTask;
 
