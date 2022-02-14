@@ -49,7 +49,7 @@ class BookSearchDelegate extends SearchDelegate {
   }
 
   Widget _buildResultAndSuggestions(context) {
-    var books = storageService.getBooksResponse()?.books ?? [];
+    var books = storageService.getBooksResponse();
     final searchItems = getSearchResult(query, books);
     if (books.isEmpty && query.isNotEmpty) {
       return const Center(child: Text('No match found'));

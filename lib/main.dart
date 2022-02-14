@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:nytbooks/core/constants/screen_titles.dart';
 import 'package:nytbooks/core/models/books_api_response.dart';
+
 import 'package:nytbooks/core/services/firebase_service.dart';
 
 import 'package:nytbooks/ui/index_page.dart';
@@ -13,13 +14,7 @@ import 'core/models/book.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await FirebaseService.shared.initialise();
-  FirebaseService.shared.tasks;
-
-  Function? originalOnError = FlutterError.onError;
-  FlutterError.onError = (FlutterErrorDetails errorDetails) async {
-    if (originalOnError != null) originalOnError(errorDetails);
-  };
+  await setUpFirebase();
 
   await dotenv.load(fileName: ".env");
 
@@ -29,18 +24,27 @@ void main() async {
   runApp(const MyApp());
 }
 
+Future<void> setUpFirebase() async {
+  await FirebaseService.shared.initialise();
+  FirebaseService.shared.tasks;
+
+  Function? originalOnError = FlutterError.onError;
+  FlutterError.onError = (FlutterErrorDetails errorDetails) async {
+    if (originalOnError != null) originalOnError(errorDetails);
+  };
+}
+
 Future initializeHive() async {
   await Hive.initFlutter();
 
   Hive.registerAdapter(BooksApiResponseAdapter());
   Hive.registerAdapter(BooksAdapter());
-  await Hive.openBox<BooksApiResponse>('books');
+  await Hive.openBox<Books>('books');
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

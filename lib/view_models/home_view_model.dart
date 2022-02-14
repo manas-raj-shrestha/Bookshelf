@@ -37,6 +37,6 @@ class HomeViewModel extends BaseModel {
   }
 
   List<Books> retriveBooksFromStorage() {
-    return _localStorageService.getBooksResponse()?.books ?? [];
+    return _localStorageService.getBooksResponse();
   }
 }

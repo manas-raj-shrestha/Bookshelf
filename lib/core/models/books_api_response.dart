@@ -6,7 +6,7 @@ part 'books_api_response.g.dart';
 @HiveType(typeId: 1)
 class BooksApiResponse extends HiveObject {
   @HiveField(0)
-  List<Books>? books;
+  List<Books>? books = [];
 
   BooksApiResponse({this.books});
 
