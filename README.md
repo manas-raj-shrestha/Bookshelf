@@ -2,7 +2,7 @@
 
 Assignment for Morphosis Apps.
 
-<a href="url"><img src="https://raw.githubusercontent.com/manas-raj-shrestha/WonderBooks/NYT-2/screen_shot.png" align="left" height="200" width="150" ></a>
+<a href="url"><img src="https://raw.githubusercontent.com/manas-raj-shrestha/WonderBooks/NYT-2/screen_shot.png" align="left" height="400" width="200" ></a>
 
 ## Getting Started
 
