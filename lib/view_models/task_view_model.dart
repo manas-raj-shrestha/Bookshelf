@@ -4,7 +4,7 @@ import 'package:nytbooks/core/services/firebase_service.dart';
 import 'package:nytbooks/view_models/base_model.dart';
 
 class TaskViewModel extends BaseModel {
-  FirebaseService _firebaseService;
+  final FirebaseService _firebaseService;
   List<Task> tasks = [];
 
   List<Task> get completedTasks =>

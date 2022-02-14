@@ -30,6 +30,7 @@ class TasksPage extends StatelessWidget {
           title: Text(title),
           actions: [
             IconButton(
+              key: const Key('add_task_button'),
               icon: const Icon(Icons.add),
               onPressed: () => addTask(context),
             )
@@ -117,6 +118,7 @@ class _Task extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: IconButton(
+        key: Key('check_box_icon_${task.id}'),
         icon: Icon(
           task.isCompleted ? Icons.check_box : Icons.check_box_outline_blank,
         ),
