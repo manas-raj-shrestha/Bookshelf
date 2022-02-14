@@ -24,7 +24,7 @@ class BookListTile extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             CachedNetworkImage(
-              imageUrl: book.imgUrl ?? '',
+              imageUrl: book.imgUrl,
               height: 150.h,
               fit: BoxFit.cover,
               width: 100.w,
@@ -39,22 +39,24 @@ class BookListTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        book.title ?? '',
+                        book.title,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontSize: 16.sp, fontWeight: FontWeight.w600),
+                        style: Theme.of(context).textTheme.subtitle1,
+                      ),
+                      SizedBox(
+                        height: 8.h,
                       ),
                       Text(
                         'by ${book.author}',
-                        style: TextStyle(fontSize: 14.sp),
+                        style: Theme.of(context).textTheme.subtitle2,
                       ),
                       SizedBox(
-                        height: 24.w,
+                        height: 20.h,
                       ),
                       Text(
                         '${book.price}',
-                        style: TextStyle(fontSize: 20.sp),
+                        style: Theme.of(context).textTheme.headline4,
                       )
                     ]),
               ),

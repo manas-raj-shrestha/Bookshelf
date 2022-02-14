@@ -2,43 +2,43 @@ import 'package:hive/hive.dart';
 
 part 'book.g.dart';
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 1)
 class Books extends HiveObject {
   @HiveField(0)
-  int? id;
+  late int id;
 
   @HiveField(1)
-  String? title;
+  late String title;
 
   @HiveField(2)
-  String? author;
+  late String author;
 
   @HiveField(3)
-  String? imgUrl;
+  late String imgUrl;
 
   @HiveField(4)
-  String? price;
+  late String price;
 
   @HiveField(5)
-  String? review;
+  late String review;
 
   @HiveField(6)
-  String? description;
+  late String description;
 
   @HiveField(7)
-  String? source;
+  late String source;
 
   Books(this.id, this.title, this.author, this.imgUrl, this.price, this.review,
       this.description, this.source);
 
   Books.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    author = json['author'];
-    imgUrl = json['imgUrl'];
-    price = json['price'];
-    review = json['review'];
-    description = json['description'];
+    id = json['id'] ?? '';
+    title = json['title'] ?? '';
+    author = json['author'] ?? '';
+    imgUrl = json['imgUrl'] ?? '';
+    price = json['price'] ?? '';
+    review = json['review'] ?? '';
+    description = json['description'] ?? '';
     source = json['source'];
   }
 

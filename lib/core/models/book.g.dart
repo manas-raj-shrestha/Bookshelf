@@ -8,7 +8,7 @@ part of 'book.dart';
 
 class BooksAdapter extends TypeAdapter<Books> {
   @override
-  final int typeId = 2;
+  final int typeId = 1;
 
   @override
   Books read(BinaryReader reader) {
@@ -17,14 +17,14 @@ class BooksAdapter extends TypeAdapter<Books> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Books(
-      fields[0] as int?,
-      fields[1] as String?,
-      fields[2] as String?,
-      fields[3] as String?,
-      fields[4] as String?,
-      fields[5] as String?,
-      fields[6] as String?,
-      fields[7] as String?,
+      fields[0] as int,
+      fields[1] as String,
+      fields[2] as String,
+      fields[3] as String,
+      fields[4] as String,
+      fields[5] as String,
+      fields[6] as String,
+      fields[7] as String,
     );
   }
 

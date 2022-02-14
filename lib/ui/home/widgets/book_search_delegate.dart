@@ -41,7 +41,7 @@ class BookSearchDelegate extends SearchDelegate {
   List<Books> getSearchResult(String query, List<Books> books) {
     if (query.isNotEmpty) {
       return books.where((option) {
-        var title = option.title ?? '';
+        var title = option.title;
         return title.toLowerCase().contains(query.toLowerCase());
       }).toList();
     }
@@ -49,7 +49,7 @@ class BookSearchDelegate extends SearchDelegate {
   }
 
   Widget _buildResultAndSuggestions(context) {
-    var books = storageService.getBooksResponse()?.books ?? [];
+    var books = storageService.getBooksResponse();
     final searchItems = getSearchResult(query, books);
     if (books.isEmpty && query.isNotEmpty) {
       return const Center(child: Text('No match found'));
@@ -71,7 +71,7 @@ class BookSearchDelegate extends SearchDelegate {
             },
             child: ListTile(
               title: Text(
-                item.title ?? '',
+                item.title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

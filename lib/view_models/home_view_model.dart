@@ -10,18 +10,20 @@ import 'package:nytbooks/core/services/local_storage_service.dart';
 import 'package:nytbooks/view_models/base_model.dart';
 
 class HomeViewModel extends BaseModel {
-  final LocalStorageService _localStorageService =
+  LocalStorageService localStorageService =
       serviceLocator<LocalStorageService>();
-  final BookService _bookApiService = BookService();
+  BookService bookApiService = BookService();
 
   final List<Books> _books = [];
 
   List<Books> get books => UnmodifiableListView(_books);
 
-  Future fetchBestSellingBooks() async {
+  HomeViewModel(this.localStorageService, this.bookApiService);
+
+  Future fetchBooks() async {
     changeState(ViewState.busy);
     try {
-      var booksApiResponse = await _bookApiService.fetchBestSellingBooks();
+      var booksApiResponse = await bookApiService.fetchBestSellingBooks();
 
       _books.addAll(booksApiResponse.books ?? []);
       _saveToLocalStorage(booksApiResponse);
@@ -33,10 +35,10 @@ class HomeViewModel extends BaseModel {
   }
 
   void _saveToLocalStorage(booksApiResponse) {
-    _localStorageService.addBookRespose(booksApiResponse);
+    localStorageService.addBookRespose(booksApiResponse);
   }
 
   List<Books> retriveBooksFromStorage() {
-    return _localStorageService.getBooksResponse()?.books ?? [];
+    return localStorageService.getBooksResponse();
   }
 }

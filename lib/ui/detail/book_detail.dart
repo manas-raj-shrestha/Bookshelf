@@ -5,8 +5,8 @@ import 'package:nytbooks/core/constants/screen_titles.dart';
 import 'package:nytbooks/core/models/book.dart';
 
 class BookDetail extends StatelessWidget {
-  final Books books;
-  const BookDetail(this.books, {Key? key}) : super(key: key);
+  final Books book;
+  const BookDetail(this.book, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class BookDetail extends StatelessWidget {
               children: [
                 _buildBookCoverImage(),
                 SizedBox(width: 16.w),
-                _buildBookInfo()
+                _buildBookInfo(context)
               ],
             ),
             SizedBox(
@@ -38,31 +38,27 @@ class BookDetail extends StatelessWidget {
 
   Expanded _buildBookDescription() {
     return Expanded(
-      child: SingleChildScrollView(child: Text(books.description ?? '')),
+      child: SingleChildScrollView(child: Text(book.description)),
     );
   }
 
-  Expanded _buildBookInfo() {
+  Expanded _buildBookInfo(context) {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(books.title ?? '',
-              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600)),
+          Text(book.title, style: Theme.of(context).textTheme.subtitle1),
           SizedBox(
             height: 8.h,
           ),
           Text(
-            "by ${books.author ?? ''}",
-            style: TextStyle(fontSize: 14.sp),
+            "by ${book.author}",
+            style: Theme.of(context).textTheme.subtitle2,
           ),
           SizedBox(
             height: 12.h,
           ),
-          Text(
-            '${books.price}',
-            style: TextStyle(fontSize: 20.sp),
-          )
+          Text('${book.price}', style: Theme.of(context).textTheme.headline4),
         ],
       ),
     );
@@ -71,7 +67,7 @@ class BookDetail extends StatelessWidget {
   CachedNetworkImage _buildBookCoverImage() {
     return CachedNetworkImage(
       fit: BoxFit.cover,
-      imageUrl: books.imgUrl ?? '',
+      imageUrl: book.imgUrl,
       height: 200.h,
       width: 150.w,
     );
