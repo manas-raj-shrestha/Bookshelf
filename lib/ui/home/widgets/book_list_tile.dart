@@ -26,7 +26,7 @@ class BookListTile extends StatelessWidget {
             CachedNetworkImage(
               imageUrl: book.imgUrl,
               height: 150.h,
-              fit: BoxFit.cover,
+              fit: BoxFit.fitHeight,
               width: 100.w,
             ),
             SizedBox(
@@ -55,11 +55,14 @@ class BookListTile extends StatelessWidget {
                         height: 20.h,
                       ),
                       Text(
-                        '${book.price}',
+                        book.price,
                         style: Theme.of(context).textTheme.headline4,
-                      )
+                      ),
                     ]),
               ),
+            ),
+            SizedBox(
+              width: 16.w,
             ),
           ],
         ),

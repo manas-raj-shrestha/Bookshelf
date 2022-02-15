@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 import 'package:nytbooks/core/enums/view_states.dart';
-import 'package:nytbooks/core/helper/dependency_injection.dart';
+
 import 'package:nytbooks/core/models/book.dart';
 
 import 'package:nytbooks/core/services/book_service.dart';
@@ -10,35 +10,43 @@ import 'package:nytbooks/core/services/local_storage_service.dart';
 import 'package:nytbooks/view_models/base_model.dart';
 
 class HomeViewModel extends BaseModel {
-  LocalStorageService localStorageService =
-      serviceLocator<LocalStorageService>();
-  BookService bookApiService = BookService();
+  final LocalStorageService _localStorageService;
+  final BookService _bookApiService;
 
   final List<Books> _books = [];
 
   List<Books> get books => UnmodifiableListView(_books);
 
-  HomeViewModel(this.localStorageService, this.bookApiService);
+  HomeViewModel(this._localStorageService, this._bookApiService);
 
   Future fetchBooks() async {
     changeState(ViewState.busy);
+    var savedBooks = retriveBooksFromStorage();
     try {
-      var booksApiResponse = await bookApiService.fetchBestSellingBooks();
+      if (savedBooks.isNotEmpty) {
+        _books.addAll(savedBooks);
+        changeState(ViewState.idle);
+      }
 
+      var booksApiResponse = await _bookApiService.fetchBestSellingBooks();
+
+      _books.clear();
       _books.addAll(booksApiResponse.books ?? []);
+
       _saveToLocalStorage(booksApiResponse);
 
       changeState(ViewState.idle);
     } catch (e) {
-      changeState(ViewState.error);
+      //Change state to error only if there are no cached books
+      if (savedBooks.isEmpty) changeState(ViewState.error);
     }
   }
 
   void _saveToLocalStorage(booksApiResponse) {
-    localStorageService.addBookRespose(booksApiResponse);
+    _localStorageService.addBookRespose(booksApiResponse);
   }
 
   List<Books> retriveBooksFromStorage() {
-    return localStorageService.getBooksResponse();
+    return _localStorageService.getBooksResponse();
   }
 }
