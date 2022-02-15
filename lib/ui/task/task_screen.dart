@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nytbooks/core/constants/screen_titles.dart';
 import '../../core/helper/dependency_injection.dart';
 import '../../core/models/task.dart';
 import '../../view_models/task_view_model.dart';
@@ -13,7 +14,7 @@ class TaskPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(task == null ? 'New Task' : 'Edit Task'),
+        title: Text(task == null ? newTaskScreenTitle : editTaskScreenTitle),
       ),
       body: _TaskForm(task: task),
     );

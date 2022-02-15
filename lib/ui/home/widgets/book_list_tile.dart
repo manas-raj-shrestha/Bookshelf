@@ -6,7 +6,7 @@ import '../../../core/models/book.dart';
 import '../../detail/book_detail.dart';
 
 class BookListTile extends StatelessWidget {
-  final Books book;
+  final Book book;
 
   const BookListTile(this.book, {Key? key}) : super(key: key);
 

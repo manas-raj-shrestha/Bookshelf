@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
     return ListView.builder(
         itemCount: homeViewModel.books.length,
         itemBuilder: (context, position) {
-          Books book = homeViewModel.books[position];
+          Book book = homeViewModel.books[position];
           return BookListTile(book);
         });
   }

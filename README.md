@@ -8,6 +8,6 @@ Assignment for Morphosis Apps.
 
 Setting up environment files:
 
-IMPORTANT You will need to download and add confirg files from [this](https://drive.google.com/drive/folders/1Bb2V0KdwDH2J_gV3OZ8PHq_yHSajUODI?usp=sharing) before running the application.
+IMPORTANT You will need to download and add config files from [this](https://drive.google.com/drive/folders/1Bb2V0KdwDH2J_gV3OZ8PHq_yHSajUODI?usp=sharing) before running the application.
 
 .env file goes in your root folder.
