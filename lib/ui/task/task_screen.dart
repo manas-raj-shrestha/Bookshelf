@@ -84,7 +84,6 @@ class __TaskFormState extends State<_TaskForm> {
       child: Container(
         padding: const EdgeInsets.all(_padding),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
               key: const Key('title_text_field'),
