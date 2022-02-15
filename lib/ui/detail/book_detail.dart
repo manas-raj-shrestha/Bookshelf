@@ -58,7 +58,7 @@ class BookDetail extends StatelessWidget {
           SizedBox(
             height: 12.h,
           ),
-          Text('${book.price}', style: Theme.of(context).textTheme.headline4),
+          Text(book.price, style: Theme.of(context).textTheme.headline4),
         ],
       ),
     );
@@ -66,7 +66,7 @@ class BookDetail extends StatelessWidget {
 
   CachedNetworkImage _buildBookCoverImage() {
     return CachedNetworkImage(
-      fit: BoxFit.cover,
+      fit: BoxFit.fitHeight,
       imageUrl: book.imgUrl,
       height: 200.h,
       width: 150.w,
