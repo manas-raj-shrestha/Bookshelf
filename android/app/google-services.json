@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "21225269757",
+    "project_id": "wonderbooks-f758e",
+    "storage_bucket": "wonderbooks-f758e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:21225269757:android:d7224db5e96b661a911194",
+        "android_client_info": {
+          "package_name": "com.example.nytbooks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "21225269757-okmts7rkabcn6tkvu8guglhd2iulbuu6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTR8eKMNFSO9WnO-xGwhRWVHl9CrGy9TE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "21225269757-okmts7rkabcn6tkvu8guglhd2iulbuu6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "21225269757-4mpdjidmfj8d4vmjs3k9ghdidu7e0ekm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.nytbooks"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
