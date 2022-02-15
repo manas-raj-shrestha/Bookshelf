@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:nytbooks/core/models/book.dart';
-import 'package:nytbooks/core/models/books_api_response.dart';
+import '../models/book.dart';
+import '../models/books_api_response.dart';
 
 class LocalStorageService {
   Future addBookRespose(BooksApiResponse booksApiResponse) async {

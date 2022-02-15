@@ -1,13 +1,13 @@
 import 'dart:collection';
 
-import 'package:nytbooks/core/enums/view_states.dart';
+import '../core/enums/view_states.dart';
 
-import 'package:nytbooks/core/models/book.dart';
+import '../core/models/book.dart';
 
-import 'package:nytbooks/core/services/book_service.dart';
-import 'package:nytbooks/core/services/local_storage_service.dart';
+import '../core/services/book_service.dart';
+import '../core/services/local_storage_service.dart';
 
-import 'package:nytbooks/view_models/base_model.dart';
+import 'base_model.dart';
 
 class HomeViewModel extends BaseModel {
   final LocalStorageService _localStorageService;

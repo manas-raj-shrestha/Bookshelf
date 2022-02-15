@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nytbooks/core/constants/screen_titles.dart';
-import 'package:nytbooks/core/models/book.dart';
+import '../../core/constants/screen_titles.dart';
+import '../../core/models/book.dart';
 
 class BookDetail extends StatelessWidget {
   final Books book;

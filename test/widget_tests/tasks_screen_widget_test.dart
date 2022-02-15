@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -11,7 +10,8 @@ import 'task_screen_widget_test.mocks.dart';
 @GenerateMocks([],
     customMocks: [MockSpec<NavigatorObserver>(returnNullOnMissingStub: true)])
 void main() {
-  testWidgets('', (WidgetTester tester) async {
+  testWidgets('When Clicked Add Button, Then Navigate To Task Page',
+      (WidgetTester tester) async {
     setupInjections();
     var mockObserver = MockNavigatorObserver();
     var addButtonFinder = find.byKey(const ValueKey('add_task_button'));
