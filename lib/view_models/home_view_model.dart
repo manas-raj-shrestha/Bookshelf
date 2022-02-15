@@ -13,9 +13,9 @@ class HomeViewModel extends BaseModel {
   final LocalStorageService _localStorageService;
   final BookService _bookApiService;
 
-  final List<Books> _books = [];
+  final List<Book> _books = [];
 
-  List<Books> get books => UnmodifiableListView(_books);
+  List<Book> get books => UnmodifiableListView(_books);
 
   HomeViewModel(this._localStorageService, this._bookApiService);
 
@@ -46,7 +46,7 @@ class HomeViewModel extends BaseModel {
     _localStorageService.addBookRespose(booksApiResponse);
   }
 
-  List<Books> retriveBooksFromStorage() {
+  List<Book> retriveBooksFromStorage() {
     return _localStorageService.getBooksResponse();
   }
 }

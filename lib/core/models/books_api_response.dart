@@ -3,15 +3,15 @@ import 'package:hive/hive.dart';
 import 'book.dart';
 
 class BooksApiResponse extends HiveObject {
-  List<Books>? books = [];
+  List<Book>? books = [];
 
   BooksApiResponse({this.books});
 
   BooksApiResponse.fromJson(Map<String, dynamic> json) {
     if (json['Books'] != null) {
-      books = <Books>[];
+      books = <Book>[];
       json['Books'].forEach((v) {
-        books!.add(Books.fromJson(v));
+        books!.add(Book.fromJson(v));
       });
     }
   }

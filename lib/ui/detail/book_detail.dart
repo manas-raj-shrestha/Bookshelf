@@ -5,7 +5,7 @@ import '../../core/constants/screen_titles.dart';
 import '../../core/models/book.dart';
 
 class BookDetail extends StatelessWidget {
-  final Books book;
+  final Book book;
   const BookDetail(this.book, {Key? key}) : super(key: key);
 
   @override

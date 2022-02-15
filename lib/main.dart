@@ -36,9 +36,11 @@ Future<void> setUpFirebase() async {
 Future initializeHive() async {
   await Hive.initFlutter();
 
-  Hive.registerAdapter(BooksAdapter());
-  await Hive.openBox<Books>('books');
+  Hive.registerAdapter(BookAdapter());
+  await Hive.openBox<Book>('books');
 }
+
+class BooksAdapter {}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

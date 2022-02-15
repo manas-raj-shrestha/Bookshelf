@@ -38,7 +38,7 @@ class BookSearchDelegate extends SearchDelegate {
     return _buildResultAndSuggestions(context);
   }
 
-  List<Books> getSearchResult(String query, List<Books> books) {
+  List<Book> getSearchResult(String query, List<Book> books) {
     if (query.isNotEmpty) {
       return books.where((option) {
         var title = option.title;

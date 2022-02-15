@@ -4,11 +4,11 @@ import 'package:nytbooks/core/services/local_storage_service.dart';
 
 class MockLocalStorage extends LocalStorageService {
   @override
-  List<Books> getBooksResponse() {
+  List<Book> getBooksResponse() {
     return [
-      Books(1, 'The Year of the Locust: Terry Hayes', 'Terry Hayes', 'NA',
+      Book(1, 'The Year of the Locust: Terry Hayes', 'Terry Hayes', 'NA',
           '£16.00', '3.2 out of 5 stars', '', ''),
-      Books(2, 'Billy Summers: The No. 1 Bestseller', 'Stephen King', 'NA',
+      Book(2, 'Billy Summers: The No. 1 Bestseller', 'Stephen King', 'NA',
           '£20.00', '4 out of 5 stars', '', '')
     ];
   }

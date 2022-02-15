@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 part 'book.g.dart';
 
 @HiveType(typeId: 1)
-class Books extends HiveObject {
+class Book extends HiveObject {
   @HiveField(0)
   late int id;
 
@@ -28,10 +28,10 @@ class Books extends HiveObject {
   @HiveField(7)
   late String source;
 
-  Books(this.id, this.title, this.author, this.imgUrl, this.price, this.review,
+  Book(this.id, this.title, this.author, this.imgUrl, this.price, this.review,
       this.description, this.source);
 
-  Books.fromJson(Map<String, dynamic> json) {
+  Book.fromJson(Map<String, dynamic> json) {
     id = json['id'] ?? '';
     title = json['title'] ?? '';
     author = json['author'] ?? '';
