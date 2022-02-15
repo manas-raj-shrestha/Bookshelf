@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nytbooks/core/constants/screen_titles.dart';
 
 import 'home/home_screen.dart';
 
@@ -17,11 +18,11 @@ class _IndexPageState extends State<IndexPage> {
   List<Widget> children = [
     const HomeScreen(),
     const TasksPage(
-      title: 'All Tasks',
+      title: allTaskScreenTitle,
       isCompletedPage: false,
     ),
     const TasksPage(
-      title: 'Completed Tasks',
+      title: completedTaskScreenTitle,
       isCompletedPage: true,
     )
   ];

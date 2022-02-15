@@ -28,7 +28,7 @@ class HomeViewModel extends BaseModel {
         changeState(ViewState.idle);
       }
 
-      var booksApiResponse = await _bookApiService.fetchBestSellingBooks();
+      var booksApiResponse = await _bookApiService.fetchBooks();
 
       _books.clear();
       _books.addAll(booksApiResponse.books ?? []);

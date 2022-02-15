@@ -4,7 +4,7 @@ import 'package:nytbooks/core/services/book_service.dart';
 
 class BookserviceMock extends BookService {
   @override
-  Future<BooksApiResponse> fetchBestSellingBooks() async {
+  Future<BooksApiResponse> fetchBooks() async {
     return Future.value(BooksApiResponse(books: [
       Book(1, 'The Year of the Locust: Terry Hayes', 'Terry Hayes', 'NA',
           '£16.00', '3.2 out of 5 stars', '', ''),

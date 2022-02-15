@@ -45,22 +45,20 @@ class TasksPage extends StatelessWidget {
 
             switch (model.viewState) {
               case ViewState.busy:
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return _buildBusyState();
               case ViewState.error:
-                return ErrorMessage(
-                    message: 'Something went wrong while fetching your tasks.',
-                    buttonTitle: 'Retry',
-                    onTap: () {
-                      model.fetchTasks();
-                    });
-
+                return _buildErrorState(model);
               case ViewState.idle:
                 return _buildIdleState(model);
             }
           },
         ));
+  }
+
+  Center _buildBusyState() {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
   }
 
   void _showSnacks(TaskViewModel model, BuildContext context) {
@@ -91,6 +89,15 @@ class TasksPage extends StatelessWidget {
               );
             },
           );
+  }
+
+  Widget _buildErrorState(TaskViewModel model) {
+    return ErrorMessage(
+        message: 'Something went wrong while fetching your tasks.',
+        buttonTitle: 'Retry',
+        onTap: () {
+          model.fetchTasks();
+        });
   }
 }
 
