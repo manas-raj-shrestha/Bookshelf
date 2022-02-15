@@ -12,7 +12,8 @@ import 'task_screen_widget_test.mocks.dart';
 @GenerateMocks([],
     customMocks: [MockSpec<NavigatorObserver>(returnNullOnMissingStub: true)])
 void main() {
-  testWidgets('Add tasks', (WidgetTester tester) async {
+  testWidgets('When Given New Task, Should Pop To Previous Page',
+      (WidgetTester tester) async {
     setupInjections();
     final mockObserver = MockNavigatorObserver();
 
@@ -33,7 +34,9 @@ void main() {
     verify(mockObserver.didPop(any, any));
   });
 
-  testWidgets('Edit task', (WidgetTester tester) async {
+  testWidgets(
+      'When Given Task Via Constructor, Task Must Be Pre Filled Into Forms',
+      (WidgetTester tester) async {
     final mockObserver = MockNavigatorObserver();
 
     await tester.pumpWidget(MaterialApp(
@@ -77,7 +80,7 @@ void main() {
     expect(finder, findsOneWidget);
   });
 
-  testWidgets('When Given Completed Task, Switch Must Be Turned Off',
+  testWidgets('When Given Incomplete Task, Switch Must Be Turned Off',
       (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(
       home: TaskPage(
