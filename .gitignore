@@ -67,8 +67,8 @@ unlinked_spec.ds
 **/android/gradlew.bat
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.java
-**/android/key.properties
-*.jks
+# **/android/key.properties
+# *.jks
 
 # iOS/XCode related
 **/ios/**/*.mode1v3
@@ -119,8 +119,8 @@ app.*.symbols
 !/dev/ci/**/Gemfile.lock
 
 # Environment files
-.env
+# .env
 
 # Firebase config files
-google-services.json
-GoogleService-Info.plist
+# google-services.json
+# GoogleService-Info.plist
