@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:nytbooks/core/helper/dependency_injection.dart';
+import '../helper/dependency_injection.dart';
 
-import 'package:nytbooks/core/models/books_api_response.dart';
-import 'package:nytbooks/core/network/dio_manager.dart';
+import '../models/books_api_response.dart';
+import '../network/dio_manager.dart';
 
 class BookService {
   Future<BooksApiResponse> fetchBestSellingBooks() async {

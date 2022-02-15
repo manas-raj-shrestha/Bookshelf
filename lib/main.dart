@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:nytbooks/core/constants/screen_titles.dart';
+import 'core/constants/screen_titles.dart';
 
-import 'package:nytbooks/core/services/firebase_service.dart';
-import 'package:nytbooks/core/theme/app_themes.dart';
+import 'core/services/firebase_service.dart';
+import 'core/theme/app_themes.dart';
 
-import 'package:nytbooks/ui/index_page.dart';
+import 'ui/index_page.dart';
 
 import 'core/helper/dependency_injection.dart';
 import 'core/models/book.dart';

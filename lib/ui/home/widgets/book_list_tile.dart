@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nytbooks/core/models/book.dart';
 
-import 'package:nytbooks/ui/detail/book_detail.dart';
+import '../../../core/models/book.dart';
+import '../../detail/book_detail.dart';
 
 class BookListTile extends StatelessWidget {
   final Books book;

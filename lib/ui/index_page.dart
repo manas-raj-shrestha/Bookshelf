@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:nytbooks/ui/home/home_screen.dart';
+import 'home/home_screen.dart';
 
 import 'task/tasks_screen.dart';
 

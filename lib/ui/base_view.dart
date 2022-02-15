@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nytbooks/core/helper/dependency_injection.dart';
-import 'package:nytbooks/view_models/base_model.dart';
+import '../core/helper/dependency_injection.dart';
+import '../view_models/base_model.dart';
 import 'package:provider/provider.dart';
 
 class BaseView<T extends BaseModel> extends StatefulWidget {

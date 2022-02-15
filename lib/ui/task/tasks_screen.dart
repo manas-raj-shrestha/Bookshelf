@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:nytbooks/core/enums/view_states.dart';
-import 'package:nytbooks/core/helper/dependency_injection.dart';
+import '../../core/enums/view_states.dart';
+import '../../core/helper/dependency_injection.dart';
 
-import 'package:nytbooks/core/models/task.dart';
-import 'package:nytbooks/ui/base_view.dart';
-import 'package:nytbooks/ui/commons/error_widget.dart';
-import 'package:nytbooks/ui/task/task_screen.dart';
-import 'package:nytbooks/view_models/task_view_model.dart';
+import '../../core/models/task.dart';
+import '../base_view.dart';
+import '../commons/error_widget.dart';
+import 'task_screen.dart';
+import '../../view_models/task_view_model.dart';
 
 class TasksPage extends StatelessWidget {
   final String title;

@@ -1,7 +1,7 @@
-import 'package:nytbooks/core/enums/view_states.dart';
-import 'package:nytbooks/core/models/task.dart';
-import 'package:nytbooks/core/services/firebase_service.dart';
-import 'package:nytbooks/view_models/base_model.dart';
+import '../core/enums/view_states.dart';
+import '../core/models/task.dart';
+import '../core/services/firebase_service.dart';
+import 'base_model.dart';
 
 class TaskViewModel extends BaseModel {
   final FirebaseService _firebaseService;

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:nytbooks/core/environment.dart';
+import '../../environment.dart';
 
 class DioAuthInterceptor extends Interceptor {
   @override

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nytbooks/core/helper/dependency_injection.dart';
-import 'package:nytbooks/core/models/book.dart';
-import 'package:nytbooks/core/services/local_storage_service.dart';
-import 'package:nytbooks/ui/detail/book_detail.dart';
+import '../../../core/helper/dependency_injection.dart';
+import '../../../core/models/book.dart';
+import '../../../core/services/local_storage_service.dart';
+import '../../detail/book_detail.dart';
 
 class BookSearchDelegate extends SearchDelegate {
   LocalStorageService storageService = serviceLocator<LocalStorageService>();
