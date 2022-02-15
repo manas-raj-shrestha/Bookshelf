@@ -120,3 +120,5 @@ app.*.symbols
 
 # Environment files
 .env
+
+google-services.json
