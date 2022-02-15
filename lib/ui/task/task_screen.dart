@@ -59,6 +59,13 @@ class __TaskFormState extends State<_TaskForm> {
   }
 
   void _save(BuildContext context) {
+    if (_titleController!.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Title is required'),
+        backgroundColor: Colors.red,
+      ));
+      return;
+    }
     task!.title = _titleController!.text;
     task!.description = _descriptionController!.text;
 
@@ -77,6 +84,7 @@ class __TaskFormState extends State<_TaskForm> {
       child: Container(
         padding: const EdgeInsets.all(_padding),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
               key: const Key('title_text_field'),
