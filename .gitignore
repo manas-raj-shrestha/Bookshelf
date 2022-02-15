@@ -121,4 +121,6 @@ app.*.symbols
 # Environment files
 .env
 
+# Firebase config files
 google-services.json
+GoogleService-Info.plist
