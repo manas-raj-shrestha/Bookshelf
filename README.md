@@ -1,7 +1,5 @@
 # WonderBooks
 
-Assignment for Morphosis Apps.
-
 <a href="url"><img src="https://raw.githubusercontent.com/manas-raj-shrestha/WonderBooks/NYT-2/screen_shot.png" height="400" width="200" ></a>
 
 ## Getting Started
